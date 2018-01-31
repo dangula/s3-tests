@@ -1,0 +1,40 @@
+[DEFAULT]
+## this section is just used as default for all the "s3 *"
+## sections, you can place these variables also directly there
+
+## replace with e.g. "localhost" to run against local software
+host = $url
+
+## uncomment the port to use something other than 80
+port = $port
+
+## say "no" to disable TLS
+is_secure = no
+
+[fixtures]
+## all the buckets created will start with this prefix;
+## {random} will be filled with random characters to pad
+## the prefix to 30 characters long, and avoid collisions
+bucket prefix = comp-{random}-
+
+[s3 main]
+## the tests assume two accounts are defined, "main" and "alt".
+
+## user_id is a 64-character hexstring
+user_id = $user1
+
+## display name typically looks more like a unix login, "jdoe" etc
+display_name = $user1Name
+
+## replace these with your access keys
+access_key = $user1Key
+secret_key = $user1Secret
+
+[s3 alt]
+## another user account, used for ACL-related tests
+user_id = $user2
+display_name = $user2Name
+## the "alt" user needs to have email set, too
+email = $user2Email
+access_key = $user2Key
+secret_key = $user2Secret
